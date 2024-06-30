@@ -18,6 +18,10 @@ public class ProductDB implements Serializable {
         maxId();
     }
 
+    /**
+     * To check whether the DataBase have sufficient Space to insert Product
+     * @return boolean value - true / false
+     */
     public boolean checkDataBaseSize(){
         return productArr!=null &&  index<productArr.length;
     }
@@ -134,7 +138,9 @@ public class ProductDB implements Serializable {
         }
     }
 
-
+    /**
+     * sortPriceInAscending() - to sort the product according to the Price in low to high (i.e Ascending order)
+     */
     public void sortPriceInAscending(){
         for(int i=0;i<index-1 && productArr[i]!=null;i++){
             for(int j=i+1;j<index;j++){
@@ -148,6 +154,9 @@ public class ProductDB implements Serializable {
         viewAllProducts();
     } 
 
+    /**
+     * sortPriceInDescending() -  to sort the product according to the Price in high to low(i.e Descending order)
+     */
     public void sortPriceInDescending(){
         for(int i=index-1;i>0;i--){
             for(int j=i-1;j>=0;j--){
@@ -161,6 +170,10 @@ public class ProductDB implements Serializable {
         viewAllProducts();
     }
 
+    /**
+     * autoSortDatabase() - used to Sort automatically in the product DataBase array
+     *                    - it does left Shifting to make database efficient to store product 
+     */
     private  void autoSortDatabase(){
         int i=0;
         for(i=0;i<productArr.length;i++){
@@ -181,7 +194,9 @@ public class ProductDB implements Serializable {
         }
     }
 
-
+    /**
+     *  maxId() - it returns lastly assigned value to the Product
+     */
     public void maxId(){
         for(Product p: productArr){
             if(p!=null && lastId<p.getpId()){
@@ -191,8 +206,12 @@ public class ProductDB implements Serializable {
         return;
     }
 
+    /**
+     * used to get the Index of Product array 
+     * @return the current index of the productDb Array
+     */
     public int getIndex(){
-        return index;
+        return this.index;
     }
 
 }

@@ -1,12 +1,22 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-
+/**
+ * ProductMain - it is a main class where the Program begins
+ */
 public class ProductMain {
     static Scanner sc=new Scanner(System.in);
+    /**
+     * productDBObject - is an objext reference of ProductDB type,  
+     * it is a static member variable
+     */
     static ProductDB productDBObject;
+    /**
+     * dbSize - is an member variable of int type,  
+     * it is a static member variable
+     */
     static int dbSize;
-    // static int lastId;
+
     public static void main(String[] args) {
        char ch=' ';
         while(true){
@@ -48,6 +58,9 @@ public class ProductMain {
         // sc.close();
     } 
 
+    /**
+     * operations() - operations to perform in the ProductDB 
+     */
     public static void operations(){
         do{
             if(dbSize<=0){
@@ -113,6 +126,9 @@ public class ProductMain {
 
     }
 
+    /**
+     * addingProducts() - to add products into the DataBase
+     */
     public static void addingProducts(){
         if(productDBObject.checkDataBaseSize())
         {
@@ -166,6 +182,9 @@ public class ProductMain {
         
     }
 
+    /**
+     * updateProductDetails() - used for any updation in the product details
+     */
     public static void updateProductDetails(){
         if(productDBObject.getIndex()>0){
             System.out.println("1. To update product price");
@@ -188,6 +207,9 @@ public class ProductMain {
         
     }
 
+    /**
+     * updateproductPrice() - used to update the product price
+     */
     public static void updateproductPrice(){
         int pid=0;
         while (true) {
@@ -216,6 +238,10 @@ public class ProductMain {
         productDBObject.updatePrice(pid,pPrice);
 
     }
+
+    /**
+     * updateProductQuantity() - used to update the product quantities
+     */
     public static void updateProductQuantity(){
         System.out.print("\nEnter product Id :");
         int pid=sc.nextInt();
@@ -225,6 +251,9 @@ public class ProductMain {
         productDBObject.updateQuantity(pid,pQnt);
     }
 
+    /**
+     * displayParticularRecord() - used to display the particular product details by taking product name
+     */
     public static void displayParticularRecord(){
         if(productDBObject.getIndex()>0){
             System.out.print("\nEnter product name :");
@@ -237,6 +266,9 @@ public class ProductMain {
         
     }
 
+    /**
+     * displayAllRecord() - used to display all the product details
+     */
     public static void displayAllRecord(){
         if(productDBObject.getIndex()>0){
             productDBObject.viewAllProducts();
@@ -246,6 +278,9 @@ public class ProductMain {
         }
     }
 
+    /**
+     *  displaypriceInAscending() - used to display the products in Ascending order according to the price
+     */
     public static void displaypriceInAscending(){
         if(productDBObject.getIndex()>0){
             productDBObject.sortPriceInAscending();
@@ -255,6 +290,10 @@ public class ProductMain {
         }
         
     }
+
+    /**
+     *  displaypriceInDescending() - used to display the products in descending order according to the price
+     */
     public static void displaypriceInDescending(){
         if(productDBObject.getIndex()>0){
             productDBObject.sortPriceInDescending();
@@ -265,6 +304,9 @@ public class ProductMain {
         
     }
 
+    /**
+     * deleterecord() - used to delete the product from the DataBase 
+     */
     public static  void deleterecord(){
         if(productDBObject.getIndex()>0){
             System.out.print("\nEnter product Id :");
@@ -276,6 +318,9 @@ public class ProductMain {
         } 
     }
 
+    /**
+     * serialization() - used to serialization operation with the help of SerializationClass
+     */
     public static void serialization(){
         SerializationClass ref=SerializationClass.getInstance();
         ref.pdb=productDBObject;
@@ -283,6 +328,9 @@ public class ProductMain {
         System.out.println("product list was saved successfully...");
     }
 
+    /**
+     * deSerialization() - used to deSerialization operation with the help of DeSerializationClass
+     */
     public static void deSerialization(){
         SerializationClass sRef=SerializationClass.getInstance();
         if(sRef.isSerialized()){
